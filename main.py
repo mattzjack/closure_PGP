@@ -81,7 +81,7 @@ def discrete_exponentiation(N, b, e):
 
 def pub_key_encr(N, E, M):
     (valid, s, t) = extended_euc(M, N)
-    if not (valid == 1):
+    if not (valid == 1 and M < N):
         print('bad message')
         return
     raised_to_public = discrete_exponentiation(N, M, E)
