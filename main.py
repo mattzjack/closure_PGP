@@ -79,6 +79,16 @@ def discrete_exponentiation(N, b, e):
         curr *= 2
     return result
 
+def gen_pub_pri_key(P, Q):
+    N = P * Q
+    phi = (P - 1) * (Q - 1)
+    D = random.randrange(phi)
+    (one, E, t) = extended_euc(D, phi)
+    while (one != 1):
+        D = random.randrange(phi)
+        (one, E, t) = extended_euc(D, phi)
+    return (N, D, E)
+
 def pub_key_encr(N, E, M):
     (valid, s, t) = extended_euc(M, N)
     if not (valid == 1 and M < N):
